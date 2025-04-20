@@ -224,5 +224,5 @@ class QuizActivity : AppCompatActivity() {
         mediaPlayer?.release()
         mediaPlayer = null
     }
-//  hello
+
 }
