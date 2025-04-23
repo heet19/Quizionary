@@ -24,7 +24,7 @@
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingTop="15dp"
-            app:title="Quiz Rules"
+            app:title="Rules"
             app:titleCentered="true"
             app:titleMarginTop="30dp"
             app:titleTextColor="@color/backgroundColor" />

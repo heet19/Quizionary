@@ -1,5 +1,6 @@
 package com.example.quizapp.activities
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -7,6 +8,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.SpinnerAdapter
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizapp.constants.Constants
@@ -53,15 +55,8 @@ class CustomQuizActivity : AppCompatActivity() {
                 val text = "Amount: $amount"
                 binding.tvAmount.text = text
             }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
-            }
-
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
     }
 
@@ -73,6 +68,7 @@ class CustomQuizActivity : AppCompatActivity() {
                 } else {
                     position + 8
                 }
+                (view as? TextView)?.setTextColor(Color.BLACK)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //  Nothing to do Here
@@ -89,6 +85,7 @@ class CustomQuizActivity : AppCompatActivity() {
                     2 -> "medium"
                     else -> "hard"
                 }
+                (view as? TextView)?.setTextColor(Color.BLACK)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //  Nothing to do Here
@@ -104,11 +101,11 @@ class CustomQuizActivity : AppCompatActivity() {
                     1 -> "multiple"
                     else -> "boolean"
                 }
+                (view as? TextView)?.setTextColor(Color.BLACK)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 //  Nothing to do Here
             }
-
         }
     }
 

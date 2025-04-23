@@ -58,4 +58,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.converter.gson)
 
+    //  Lottie Animation
+    implementation ("com.airbnb.android:lottie:6.0.0")
+
 }

@@ -106,13 +106,19 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/categorySpinner"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:popupBackground="@color/card_color_1"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_marginEnd="10dp"
+                android:theme="@style/Spinner"
+                android:popupBackground="@color/card_color_1"
+                android:backgroundTint="@color/black"
+                android:dropDownWidth="match_parent"
+                android:dropDownHorizontalOffset="0dp"
+                android:dropDownVerticalOffset="5dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -142,13 +148,19 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/difficultySpinner"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:popupBackground="@color/card_color_2"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_marginEnd="10dp"
+                android:theme="@style/Spinner"
+                android:popupBackground="@color/card_color_2"
+                android:backgroundTint="@color/black"
+                android:dropDownWidth="match_parent"
+                android:dropDownHorizontalOffset="0dp"
+                android:dropDownVerticalOffset="5dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -178,13 +190,20 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/typeSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:popupBackground="@color/card_color_3"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_marginEnd="10dp"
+                android:theme="@style/Spinner"
+                android:popupBackground="@color/card_color_3"
+                android:backgroundTint="@color/black"
+                android:dropDownWidth="match_parent"
+                android:dropDownHorizontalOffset="0dp"
+                android:dropDownVerticalOffset="5dp"
+                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

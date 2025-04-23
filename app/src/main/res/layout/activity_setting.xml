@@ -24,7 +24,7 @@
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingTop="15dp"
-            app:title="Quiz Rules"
+            app:title="Settings"
             app:titleCentered="true"
             app:titleMarginTop="30dp"
             app:titleTextColor="@color/backgroundColor" />
@@ -44,7 +44,6 @@
         android:id="@+id/musicCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:elevation="5dp"
         app:cardBackgroundColor="@color/card_color_4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Only while Playing"
+                    android:text="Only while playing"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -139,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Play all the time"
+                    android:text="All time"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -330,6 +329,14 @@
                     android:src="@drawable/baseline_arrow_forward" />
 
             </LinearLayout>
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/policyDivider"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                app:dividerColor="@color/main_Tool_Bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ruleCard" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

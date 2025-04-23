@@ -166,10 +166,11 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun getScore():Double {
-        val score1 = when(questionList[position].type) {
-            "boolean" -> 1.0
-            else -> 1.0
-        }
+//        val score1 = when(questionList[position].type) {
+//            "boolean" -> 0.5
+//            else -> 1.0
+//        }
+
 //        val score2: Double = (timeLeft.toDouble())/(20).toDouble()
 
         val score3 = when(questionList[position].difficulty) {
@@ -177,7 +178,7 @@ class QuizActivity : AppCompatActivity() {
             "medium" -> 2.0
             else -> 3.0
         }
-        return score1+score3
+        return score3
     }
 
     private fun showCorrectAnswer() {

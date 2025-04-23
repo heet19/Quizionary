@@ -18,7 +18,6 @@ class ResultActivity : AppCompatActivity() {
         ActivityResultBinding.inflate(layoutInflater)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

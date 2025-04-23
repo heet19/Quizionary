@@ -27,8 +27,7 @@
             android:paddingTop="30dp"
             android:paddingEnd="10dp"
             android:paddingBottom="5dp"
-            app:title="Quiz"
-            app:titleCentered="true"
+            app:title="@string/app_name"
             app:titleTextColor="@color/backgroundColor" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:background="@drawable/pink_solid_button_bg"
+            android:elevation="20dp"
+            android:background="@drawable/quiz_button_bg"
             android:text="Random Quiz"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:background="@drawable/pink_solid_button_bg"
+            android:background="@drawable/quiz_button_bg"
             android:text="Custom Quiz"
             android:textAllCaps="false"
             android:textColor="@color/white"
