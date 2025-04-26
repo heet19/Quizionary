@@ -487,7 +487,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_marginTop="5dp"
-                        app:dividerColor="@color/sandy_Brown" />
+                        app:dividerColor="@color/brown" />
 
                     <LinearLayout
                         android:id="@+id/ratingLayout"

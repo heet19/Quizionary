@@ -60,16 +60,27 @@ class MainActivity : AppCompatActivity() {
 
                 adapter.setOnTouchResponse(object :GridAdapter.OnTouchResponse{
                     override fun onClick(id: Int) {
-                        quizClass.getQuizList(10,id,null,null)
+//                        quizClass.getQuizList(10,id,null,null)
+                        val intent = Intent(this@MainActivity, QuizActivity::class.java)
+                        intent.putExtra("amount", 10)
+                        intent.putExtra("category", id)
+                        intent.putExtra("difficulty", null as String?)
+                        intent.putExtra("type", null as String?)
+                        startActivity(intent)
                     }
                 })
                 stopShimmer()
             }
         })
 
-
         binding.btnRandomQuiz.setOnClickListener {
-            quizClass.getQuizList(10, null, null, null)
+//            quizClass.getQuizList(10, null, null, null)
+            val intent = Intent(this, QuizActivity::class.java)
+            intent.putExtra("amount", 10)
+            intent.putExtra("category", null as Int?)
+            intent.putExtra("difficulty", null as String?)
+            intent.putExtra("type", null as String?)
+            startActivity(intent)
         }
 
         binding.btnCustomQuiz.setOnClickListener {

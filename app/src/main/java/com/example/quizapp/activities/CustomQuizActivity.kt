@@ -1,5 +1,6 @@
 package com.example.quizapp.activities
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -12,7 +13,6 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.quizapp.constants.Constants
-import com.example.quizapp.constants.QuizClass
 import com.example.quizapp.databinding.ActivityCustomQuizBinding
 
 class CustomQuizActivity : AppCompatActivity() {
@@ -44,7 +44,13 @@ class CustomQuizActivity : AppCompatActivity() {
         }
 
         binding.startCustomQuiz.setOnClickListener {
-            QuizClass(this).getQuizList(amount, category, difficulty, type)
+//            QuizClass(this).getQuizList(amount, category, difficulty, type)
+            val intent = Intent(this, QuizActivity::class.java)
+            intent.putExtra("amount", amount)
+            intent.putExtra("category", category)
+            intent.putExtra("difficulty", difficulty)
+            intent.putExtra("type", type)
+            startActivity(intent)
         }
     }
 

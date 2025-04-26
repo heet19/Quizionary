@@ -15,13 +15,24 @@ import com.example.quizapp.R
 import com.example.quizapp.constants.Constants
 import com.example.quizapp.databinding.ActivityQuizBinding
 import com.example.quizapp.models.QuizQuestion
+import com.example.quizapp.models.QuizResponse
 import com.example.quizapp.models.ResultModel
+import com.example.quizapp.retrofit.QuizService
+import com.example.quizapp.utils.Utils
+import com.facebook.shimmer.ShimmerFrameLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class QuizActivity : AppCompatActivity() {
 
     private val binding: ActivityQuizBinding by lazy {
         ActivityQuizBinding.inflate(layoutInflater)
     }
+
+    private lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
     private var mediaPlayer: MediaPlayer? = null
     private val PREFS_NAME = "QuizPrefs"
@@ -41,6 +52,10 @@ class QuizActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
+        // Initialize the shimmer layout
+        shimmerFrameLayout = binding.shimmerEffectFrameQuiz
+        startShimmer()
+
         val sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         val isMusicEnabled = sharedPreferences.getBoolean(MUSIC_QUIZ_ONLY_KEY, true)
 
@@ -51,13 +66,21 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
-        questionList = intent.getSerializableExtra("questionList") as ArrayList<QuizQuestion>
+        val amount = intent.getIntExtra("amount", 10)
+        val category = intent.getIntExtra("category", 0)
+        val difficulty = intent.getStringExtra("difficulty")
+        val type = intent.getStringExtra("type")
 
-        binding.pbProgress.max = questionList.size
-        setQuestion()
-        setOptions()
-        startTimer()
-        binding.tvProgress.text = "1/${questionList.size}"
+        fetchQuizQuestions(amount, category, difficulty, type)
+
+//        questionList = intent.getSerializableExtra("questionList") as ArrayList<QuizQuestion>
+//
+//        binding.pbProgress.max = questionList.size
+//        setQuestion()
+//        setOptions()
+//        startTimer()
+//        binding.tvProgress.text = "1/${questionList.size}"
+//
 
         binding.btnNext.setOnClickListener {
             onNext()
@@ -79,6 +102,67 @@ class QuizActivity : AppCompatActivity() {
         binding.option3.setOnClickListener(optionClickListener)
         binding.option4.setOnClickListener(optionClickListener)
 
+    }
+
+    private fun fetchQuizQuestions(amount: Int, category: Int, difficulty: String?, type: String?) {
+         startShimmer()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://opentdb.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            val service = retrofit.create(QuizService::class.java)
+            val call = service.getQuiz(amount, category, difficulty, type)
+
+            call.enqueue(object : Callback<QuizResponse> {
+                override fun onResponse(call: Call<QuizResponse>,response: Response<QuizResponse>) {
+                    if (response.isSuccessful && response.body() != null) {
+                        val quizResponse = response.body()!!
+                        questionList = ArrayList(quizResponse.results)
+
+                        if (questionList.isNotEmpty()) {
+                            binding.pbProgress.max = questionList.size
+                            setQuestion()
+                            setOptions()
+                            stopShimmer()
+                            startTimer()
+                            binding.tvProgress.text = "1/${questionList.size}"
+                        } else {
+                            Utils.showToast(this@QuizActivity, "No questions available for this selection")
+                            finish()
+                        }
+
+                    } else {
+                        Utils.showToast(this@QuizActivity, "Failed to fetch questions")
+                        finish()
+                    }
+                }
+
+                override fun onFailure(call: Call<QuizResponse>, t: Throwable) {
+                    Utils.showToast(this@QuizActivity, "Error: ${t.message}")
+                    finish()
+                }
+            })
+    }
+
+    private fun startShimmer() {
+        shimmerFrameLayout.startShimmer()
+        shimmerFrameLayout.visibility = View.VISIBLE
+        binding.cardView2.visibility = View.GONE
+        binding.constraintLayout2.visibility = View.GONE
+        binding.constraintLayout2.visibility = View.GONE
+        binding.linearLayout.visibility = View.GONE
+        binding.btnNext.visibility = View.GONE
+    }
+
+    private fun stopShimmer() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        binding.cardView2.visibility = View.VISIBLE
+        binding.constraintLayout2.visibility = View.VISIBLE
+        binding.linearLayout.visibility = View.VISIBLE
+        binding.btnNext.visibility = View.VISIBLE
     }
 
     private fun setQuestion() {
