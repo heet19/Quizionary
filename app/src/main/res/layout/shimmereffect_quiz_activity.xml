@@ -125,7 +125,7 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/shimmerBtnNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:padding="5dp"
-        app:cornerRadius="15dp"
+        app:cornerRadius="10dp"
         android:backgroundTint="@color/french_Rose"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
