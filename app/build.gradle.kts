@@ -59,6 +59,9 @@ dependencies {
     implementation(libs.converter.gson)
 
     //  Lottie Animation
-    implementation ("com.airbnb.android:lottie:6.0.0")
+    implementation (libs.lottie)
+
+    //    Shimmer Effect
+    implementation(libs.shimmer)
 
 }

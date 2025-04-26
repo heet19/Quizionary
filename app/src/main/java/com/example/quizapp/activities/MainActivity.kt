@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +15,7 @@ import com.example.quizapp.constants.Constants
 import com.example.quizapp.constants.QuizClass
 import com.example.quizapp.databinding.ActivityMainBinding
 import com.example.quizapp.models.Category
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {
@@ -22,10 +24,16 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private lateinit var shimmerFrameLayout: ShimmerFrameLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        // Initialize the shimmer layout
+        shimmerFrameLayout = binding.shimmerEffectFrameMain
+        startShimmer()
 
         val sharedPreferences = getSharedPreferences("QuizPrefs", MODE_PRIVATE)
         val isMusicGlobal = sharedPreferences.getBoolean("music_global", false)
@@ -49,24 +57,38 @@ class MainActivity : AppCompatActivity() {
             override fun onQuestionStatFetched(map: Map<String, Category>) {
                 val adapter = GridAdapter(Constants.getCategoryItemList(),map)
                 rvCategoryList?.adapter = adapter
+
                 adapter.setOnTouchResponse(object :GridAdapter.OnTouchResponse{
                     override fun onClick(id: Int) {
                         quizClass.getQuizList(10,id,null,null)
                     }
-
                 })
+                stopShimmer()
             }
-
         })
+
 
         binding.btnRandomQuiz.setOnClickListener {
             quizClass.getQuizList(10, null, null, null)
         }
 
-
         binding.btnCustomQuiz.setOnClickListener {
             startActivity(Intent(this, CustomQuizActivity::class.java))
         }
+    }
+
+    private fun startShimmer() {
+        shimmerFrameLayout.startShimmer()
+        shimmerFrameLayout.visibility = View.VISIBLE
+        binding.rvCategoryList.visibility = View.GONE
+        binding.linearLayoutButton.visibility = View.GONE
+    }
+
+    private fun stopShimmer() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        binding.rvCategoryList.visibility = View.VISIBLE
+        binding.linearLayoutButton.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

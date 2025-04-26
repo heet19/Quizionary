@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".activities.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/shimmerLinearLayoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/quiz_button_bg"
+            android:elevation="20dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/quiz_button_bg"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/SscrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shimmerLinearLayoutButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView0"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_1"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView1"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_2"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView3"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_3"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView4"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_4"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView5"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_5"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView6"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_1"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView7"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_2"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView8"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_3"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView9"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_4"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/category_CardView10"
+                        android:layout_width="0dp"
+                        android:layout_height="170dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/card_color_5"
+                        app:cardBackgroundColor="#FFD7E2"
+                        app:cardElevation="5dp"
+                        app:shapeAppearanceOverlay="@style/MainActivityCategoryCards"
+                        app:strokeColor="@color/shimmerEffect"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

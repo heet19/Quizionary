@@ -2,15 +2,15 @@ package com.example.quizapp.constants
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.view.View
 import com.example.quizapp.activities.QuizActivity
 import com.example.quizapp.models.Category
 import com.example.quizapp.models.QuestionStats
-import com.example.quizapp.models.QuizQuestion
 import com.example.quizapp.models.QuizResponse
 import com.example.quizapp.retrofit.QuestionStatsService
 import com.example.quizapp.retrofit.QuizService
 import com.example.quizapp.utils.Utils
+import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +22,7 @@ class QuizClass(private val context: Context) {
     fun getQuizList(amount:Int, category: Int?, difficulty:String?, type:String?) {
         if (Constants.isNetworkAvailable(context)) {
 
-            val pdDialog = Utils.showProgressBar(context)
+//            val pdDialog = Utils.showProgressBar(context)
 
             val retrofit:Retrofit = Retrofit.Builder()
                 .baseUrl("https://opentdb.com/")
@@ -34,7 +34,7 @@ class QuizClass(private val context: Context) {
 
             dataCall.enqueue(object : Callback<QuizResponse> {
                 override fun onResponse(call: Call<QuizResponse>, response: Response<QuizResponse>) {
-                    pdDialog.cancel()
+//                    pdDialog.cancel()
                     if (response.isSuccessful) {
                         val responseData:QuizResponse = response.body()!!
                         val questionList = ArrayList(responseData.results)
@@ -51,7 +51,7 @@ class QuizClass(private val context: Context) {
                 }
 
                 override fun onFailure(call: Call<QuizResponse>, t: Throwable) {
-                    pdDialog.cancel()
+//                    pdDialog.cancel()
                     Utils.showToast(context, "Failure in response")
                 }
             })
@@ -63,7 +63,7 @@ class QuizClass(private val context: Context) {
 
     fun getQuestionStatsList(callBack:QuestionStatCallback){
         if (Constants.isNetworkAvailable(context)) {
-            val pbDialog = Utils.showProgressBar(context)
+//            val pbDialog = Utils.showProgressBar(context)
             val retrofit:Retrofit = Retrofit.Builder()
                 .baseUrl("https://opentdb.com/")
                 .addConverterFactory(GsonConverterFactory.create()).build()
@@ -73,7 +73,7 @@ class QuizClass(private val context: Context) {
 
             dataCall.enqueue(object : Callback<QuestionStats>{
                 override fun onResponse(call: Call<QuestionStats>, response: Response<QuestionStats>) {
-                    pbDialog.cancel()
+//                    pbDialog.cancel()
                     if (response.isSuccessful) {
                         val questionStats:QuestionStats = response.body()!!
                         val categoryMap = questionStats.categories
@@ -85,7 +85,7 @@ class QuizClass(private val context: Context) {
                 }
 
                 override fun onFailure(call: Call<QuestionStats>, t: Throwable) {
-                    pbDialog.cancel()
+//                    pbDialog.cancel()
                     Utils.showToast(context, "API Call Failure")
                 }
 
