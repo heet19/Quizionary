@@ -225,21 +225,69 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    private fun startTimer() {
-        binding.circularProgressBar.max = 20
-        binding.circularProgressBar.progress = 20
+//    private fun startTimer() {
+//        binding.circularProgressBar.max = 20
+//        binding.circularProgressBar.progress = 20
+//
+//        timer = object : CountDownTimer(20000, 1000) {
+//            override fun onTick(remaining: Long) {
+//                binding.circularProgressBar.incrementProgressBy(-1)
+//                binding.tvTimer.text = (remaining/1000).toString()
+//                timeLeft = (remaining/1000).toInt()
+//            }
+//            override fun onFinish() {
+//                showCorrectAnswer()
+//                allowPlaying = false
+//            }
+//        }.start()
+//    }
 
-        timer = object : CountDownTimer(20000, 1000) {
+    private fun startTimer() {
+        val totalTime = 20000L // 20 seconds in milliseconds
+        val interval = 16L // ~60 FPS, smooth animation
+
+        binding.circularProgressBar.max = totalTime.toInt()
+        binding.circularProgressBar.progress = totalTime.toInt()
+
+        timer?.cancel()
+        timer = object : CountDownTimer(totalTime, interval) {
             override fun onTick(remaining: Long) {
-                binding.circularProgressBar.incrementProgressBy(-1)
-                binding.tvTimer.text = (remaining/1000).toString()
-                timeLeft = (remaining/1000).toInt()
+                binding.circularProgressBar.progress = remaining.toInt()
+
+                val secondsLeft = (remaining / 1000).toInt()
+                binding.tvTimer.text = secondsLeft.toString()
+                timeLeft = secondsLeft
+
+                updateProgressBarColor(remaining)
             }
+
             override fun onFinish() {
-                showCorrectAnswer()
+                binding.circularProgressBar.progress = 0
+                binding.tvTimer.text = "0"
                 allowPlaying = false
+                showCorrectAnswer()
             }
         }.start()
+    }
+
+    private fun updateProgressBarColor(remaining: Long) {
+        val fraction = remaining / 20000f
+
+        val color = when {
+            fraction > 0.5f -> blendColors(0xFF47FF33.toInt(), 0xFF00BFFF.toInt(), (1f - fraction) * 2f) // Green to Yellow
+            fraction > 0.25f -> blendColors(0xFF00BFFF.toInt(), 0xFFFFFF00.toInt(), (0.5f - fraction) * 4f) // Yellow to Orange
+            else -> blendColors(0xFFFFFF00.toInt(), 0xFFFF3729.toInt(), (0.25f - fraction) * 4f) // Orange to Red
+        }
+
+        binding.circularProgressBar.progressDrawable.setTint(color)
+    }
+
+    private fun blendColors(from: Int, to: Int, ratio: Float): Int {
+        val inverseRatio = 1f - ratio
+        val r = ((from shr 16 and 0xFF) * inverseRatio + (to shr 16 and 0xFF) * ratio).toInt()
+        val g = ((from shr 8 and 0xFF) * inverseRatio + (to shr 8 and 0xFF) * ratio).toInt()
+        val b = ((from and 0xFF) * inverseRatio + (to and 0xFF) * ratio).toInt()
+        return 0xFF shl 24 or (r shl 16) or (g shl 8) or b
     }
 
     private fun setScore(button: Button?) {
