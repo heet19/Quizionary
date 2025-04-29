@@ -151,6 +151,7 @@ class QuizActivity : AppCompatActivity() {
         shimmerFrameLayout.visibility = View.VISIBLE
         binding.cardView2.visibility = View.GONE
         binding.constraintLayout2.visibility = View.GONE
+        binding.clCircularProgressBar.visibility = View.GONE
         binding.constraintLayout2.visibility = View.GONE
         binding.linearLayout.visibility = View.GONE
         binding.btnNext.visibility = View.GONE
@@ -161,6 +162,7 @@ class QuizActivity : AppCompatActivity() {
         shimmerFrameLayout.visibility = View.GONE
         binding.cardView2.visibility = View.VISIBLE
         binding.constraintLayout2.visibility = View.VISIBLE
+        binding.clCircularProgressBar.visibility = View.VISIBLE
         binding.linearLayout.visibility = View.VISIBLE
         binding.btnNext.visibility = View.VISIBLE
     }
